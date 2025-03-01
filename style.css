@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #322046;
+  color: #f0efef;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.board {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.board button {
+  width: 128px;
+  height: 128px;
+  background-color: transparent;
+  font-size: 3rem;
+  color: inherit;
+  border: none;
+}
+
+.board button:hover {
+  background-color: rgba(0, 0, 0, 0.137);
+  cursor: pointer;
+}
+
+.board button:nth-child(1),
+.board button:nth-child(2),
+.board button:nth-child(3),
+.board button:nth-child(4),
+.board button:nth-child(5),
+.board button:nth-child(6) {
+  border-bottom: 1px solid white;
+}
+
+.board button:nth-child(2),
+.board button:nth-child(5),
+.board button:nth-child(8) {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
