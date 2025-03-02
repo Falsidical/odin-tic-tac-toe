@@ -28,6 +28,17 @@ body {
   border: none;
 }
 
+.buttons {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.buttons button {
+  padding: 4px;
+}
+
 .board button:hover {
   background-color: rgba(0, 0, 0, 0.137);
   cursor: pointer;
@@ -47,4 +58,21 @@ body {
 .board button:nth-child(8) {
   border-left: 1px solid white;
   border-right: 1px solid white;
+}
+
+::backdrop {
+  background: rgba(0, 0, 0, 0.89);
+  opacity: 0.75;
+  margin: auto;
+}
+
+dialog {
+  padding: 24px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }

@@ -1,4 +1,9 @@
 const buttons = document.querySelectorAll('.board button');
+const newgameBtn = document.querySelector('.newgame');
+const resetBtn = document.querySelector('.reset');
+const cancelBtn = document.querySelector('.cancel');
+const dialog = document.querySelector('dialog');
+const form = document.querySelector('form');
 
 function Player(name, marker) {
   this.name = name;
@@ -8,6 +13,24 @@ function Player(name, marker) {
 
 const gameController = (function () {
   const gameBoard = [];
+  let p1, p2;
+  let turn = 0;
+
+  const startGame = function (player1, player2) {
+    [p1, p2] = [player1, player2];
+  };
+
+  const playerTurn = function (position) {
+    if (turn % 2 === 0) {
+      gameBoard[position] = p1.marker;
+    } else {
+      gameBoard[position] = p2.marker;
+    }
+    turn++;
+    displayController.draw(gameBoard);
+    checkGameOver();
+  };
+
   const winningPos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -18,22 +41,18 @@ const gameController = (function () {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  const players = [];
-  let turn = 0;
-  const playerTurn = function (position) {
-    if (turn % 2 === 0) {
-      gameBoard[position] = 'X';
-    } else {
-      gameBoard[position] = 'O';
-    }
-    //gameBoard[position] = player.marker;
-    turn++;
-    displayController.draw(gameBoard);
-  };
+
   const checkGameOver = function () {
-    winningPos.forEach((pos) => {});
+    [p1, p2].forEach((player) => {
+      winningPos.forEach((pos) => {
+        if (gameBoard[pos[0]] === player.marker && gameBoard[pos[1]] === player.marker && gameBoard[pos[2]] === player.marker) {
+          console.log(`gano el jugador ${player.name}`);
+        }
+      });
+    });
   };
-  return { playerTurn };
+
+  return { playerTurn, startGame };
 })();
 
 const displayController = (function () {
@@ -54,5 +73,23 @@ for (let i = 0; i < 9; i++) {
   buttons[i].addEventListener('click', gameController.playerTurn.bind(null, i));
 }
 
-const p1 = new Player('Fran', 'X');
-const p2 = new Player('Evil Fran', 'O');
+newgameBtn.addEventListener('click', () => {
+  dialog.showModal();
+});
+
+cancelBtn.addEventListener('click', () => {
+  dialog.close();
+});
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const p1name = formData.get('p1name');
+  const p1marker = formData.get('p1marker');
+  const p2name = formData.get('p2name');
+  const p2marker = formData.get('p2marker');
+  const p1 = new Player(p1name, p1marker);
+  const p2 = new Player(p2name, p2marker);
+  gameController.startGame(p1, p2);
+  dialog.close();
+});
