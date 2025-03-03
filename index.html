@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="game.js" defer></script>
     <title>Tic Tac Toe</title>
@@ -10,7 +13,7 @@
   <body>
     <dialog>
       <form>
-        <p>Start New Game</p>
+        <h2>Start New Game</h2>
         <div>
           <label for="p1name">Player 1 Name</label>
           <input type="text" name="p1name" id="p1name" />
@@ -30,6 +33,17 @@
       </form>
     </dialog>
     <div class="game">
+      <h1>Tic Tac Toe</h1>
+      <div class="players">
+        <div>
+          <h2 class="name1">Player 1</h2>
+          <p>Score: <span class="p1score">0</span></p>
+        </div>
+        <div>
+          <h2 class="name2">Player 2</h2>
+          <p>Score: <span class="p2score">0</span></p>
+        </div>
+      </div>
       <div class="board">
         <button></button>
         <button></button>

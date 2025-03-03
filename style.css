@@ -10,6 +10,8 @@ body {
   min-height: 100vh;
   display: grid;
   place-items: center;
+  font-family: 'Caveat Brush', serif;
+  font-size: 1.6rem;
 }
 
 .board {
@@ -32,15 +34,29 @@ body {
   margin-top: 32px;
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 24px;
 }
 
-.buttons button {
-  padding: 4px;
+.buttons button,
+form button {
+  padding: 8px 16px;
+  background-color: transparent;
+  color: inherit;
+  border: 2px solid rgba(255, 255, 255, 0.719);
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 1.4rem;
+  transition: all 100ms;
+}
+
+.buttons button:hover,
+form button:hover {
+  cursor: pointer;
+  border-color: white;
+  transform: scale(1.1) rotate(1.4deg);
 }
 
 .board button:hover {
-  background-color: rgba(0, 0, 0, 0.137);
   cursor: pointer;
 }
 
@@ -50,29 +66,47 @@ body {
 .board button:nth-child(4),
 .board button:nth-child(5),
 .board button:nth-child(6) {
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
 }
 
 .board button:nth-child(2),
 .board button:nth-child(5),
 .board button:nth-child(8) {
-  border-left: 1px solid white;
-  border-right: 1px solid white;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
 }
 
 ::backdrop {
-  background: rgba(0, 0, 0, 0.89);
-  opacity: 0.75;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
   margin: auto;
+}
+
+.players {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.players div:nth-child(2) {
+  text-align: end;
 }
 
 dialog {
   padding: 24px;
   margin: auto;
+  border-radius: 8px;
+  background-color: #322046;
+  color: inherit;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
 }
